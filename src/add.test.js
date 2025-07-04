@@ -10,5 +10,8 @@ describe("String Calculator", () => {
     test("return sum of two numbers", () => {
       expect(add("1,2")).toBe(3);
     });
+    test("return sum of 2 or more numbers", () => {
+      expect(add("1,2,8,10")).toBe(21);
+    });
   });
 });
