@@ -7,5 +7,8 @@ describe("String Calculator", () => {
     test("returns itself for single number", () => {
       expect(add("1")).toBe(1);
     });
+    test("return sum of two numbers", () => {
+      expect(add("1,2")).toBe(3);
+    });
   });
 });
