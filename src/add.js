@@ -1,8 +1,8 @@
 function add(nums) {
   if (nums === "") return 0;
-  if (nums.length == 1) return parseInt(nums);
+  const defaultDelimiter = /,|\n/;
   let numArr = nums
-    .split(",")
+    .split(defaultDelimiter)
     .map((s) => s.trim())
     .filter((s) => s !== "")
     .map(Number);

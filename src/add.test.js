@@ -7,11 +7,16 @@ describe("String Calculator", () => {
     test("returns itself for single number", () => {
       expect(add("1")).toBe(1);
     });
-    test("return sum of two numbers", () => {
+    test("returns sum of two numbers", () => {
       expect(add("1,2")).toBe(3);
     });
-    test("return sum of 2 or more numbers", () => {
+    test("returns sum of 2 or more numbers", () => {
       expect(add("1,2,8,10")).toBe(21);
+    });
+  });
+  describe("Delimiter support", () => {
+    test("handles newline delimiter", () => {
+      expect(add("1\n2, 5,9")).toBe(17);
     });
   });
 });
