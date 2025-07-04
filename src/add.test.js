@@ -18,5 +18,18 @@ describe("String Calculator", () => {
     test("handles newline delimiter", () => {
       expect(add("1\n2, 5,9")).toBe(17);
     });
+    test("handle custom delimiter", () => {
+      expect(add("//!\n4!7!2")).toBe(13);
+    });
+  });
+  describe("handle negative number exception", () => {
+    test("handle single negative number error", () => {
+      expect(() => add("-1")).toThrow("negative numbers not allowed: -1");
+    });
+    test("handle multiple negative numbers error", () => {
+      expect(() => add("5, -1, -7, 1")).toThrow(
+        "negative numbers not allowed: -1, -7"
+      );
+    });
   });
 });
