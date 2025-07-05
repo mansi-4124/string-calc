@@ -22,4 +22,9 @@ The implementation was benchmarked with inputs of over 10,000 numbers to validat
 ## Screenshots
 
 All tests passing:  
+
 ![All Tests](screenshots/all-passing-tests.png)
+
+Performance Benchmark :
+
+![All Tests](screenshots/performance-benchmark.png)
