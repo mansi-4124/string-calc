@@ -35,6 +35,12 @@ describe("String Calculator", () => {
     test("handles long custom delimiter", () => {
       expect(sCalc.add("//!!!\n4!!!7!!!2")).toBe(13);
     });
+    test("multiple custom delimiter", () => {
+      expect(sCalc.add("//[*][!]\n1*2!8!3")).toBe(14);
+    });
+    test("multiple long custom delimiter", () => {
+      expect(sCalc.add("//[**][!!]\n1**2!!8!!3")).toBe(14);
+    });
   });
   describe("handles negative number exception", () => {
     test("handle single negative number error", () => {

@@ -13,6 +13,21 @@ class StringCalculator {
       const delimiterDefinition = parts[0].substring(2);
       delimiter = new RegExp(delimiterDefinition);
       numString = parts[1];
+
+      const delimiters = [];
+      const delimiterPattern = /\[(.*?)\]/g;
+      let match;
+      while ((match = delimiterPattern.exec(delimiterDefinition)) !== null) {
+        delimiters.push(match[1]);
+      }
+      if (delimiters.length > 0) {
+        const escaped = delimiters.map((d) =>
+          d.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")
+        );
+        delimiter = new RegExp(escaped.join("|"));
+      } else {
+        delimiter = new RegExp(delimiterDefinition);
+      }
     }
 
     const numArr = numString
