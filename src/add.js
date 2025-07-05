@@ -31,12 +31,6 @@ class StringCalculator {
     }
     let sum = 0;
     const negatives = [];
-    // const numArr = numString
-    //   .split(delimiter)
-    //   .map((s) => s.trim())
-    //   .filter((s) => s !== "")
-    //   .map(Number)
-    //   .filter((n) => n <= 1000);
     for (const token of numString.split(delimiter)) {
       const n = Number(token.trim());
       if (!Number.isNaN(n) && n <= 1000) {
