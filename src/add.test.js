@@ -1,35 +1,54 @@
-const { add } = require("./add");
+const { StringCalculator } = require("./add");
+const sCalc = new StringCalculator();
 describe("String Calculator", () => {
+  describe("Count number of times add method called", () => {
+    test("returns 0 if method called first time", () => {
+      expect(sCalc.getCallCount()).toBe(0);
+    });
+    test("returns count for add method called", () => {
+      sCalc.add("1");
+      sCalc.add("1, 4");
+      expect(sCalc.getCallCount()).toBe(2);
+    });
+  });
   describe("Core functionalities", () => {
     test("returns 0 for empty string", () => {
-      expect(add("")).toBe(0);
+      expect(sCalc.add("")).toBe(0);
     });
     test("returns itself for single number", () => {
-      expect(add("1")).toBe(1);
+      expect(sCalc.add("1")).toBe(1);
     });
     test("returns sum of two numbers", () => {
-      expect(add("1,2")).toBe(3);
+      expect(sCalc.add("1,2")).toBe(3);
     });
     test("returns sum of 2 or more numbers", () => {
-      expect(add("1,2,8,10")).toBe(21);
+      expect(sCalc.add("1,2,8,10")).toBe(21);
     });
   });
   describe("Delimiter support", () => {
     test("handles newline delimiter", () => {
-      expect(add("1\n2, 5,9")).toBe(17);
+      expect(sCalc.add("1\n2, 5,9")).toBe(17);
     });
-    test("handle custom delimiter", () => {
-      expect(add("//!\n4!7!2")).toBe(13);
+    test("handles custom delimiter", () => {
+      expect(sCalc.add("//!\n4!7!2")).toBe(13);
+    });
+    test("handles long custom delimiter", () => {
+      expect(sCalc.add("//!!!\n4!!!7!!!2")).toBe(13);
     });
   });
-  describe("handle negative number exception", () => {
+  describe("handles negative number exception", () => {
     test("handle single negative number error", () => {
-      expect(() => add("-1")).toThrow("negative numbers not allowed: -1");
+      expect(() => sCalc.add("-1")).toThrow("negative numbers not allowed: -1");
     });
-    test("handle multiple negative numbers error", () => {
-      expect(() => add("5, -1, -7, 1")).toThrow(
+    test("handles multiple negative numbers error", () => {
+      expect(() => sCalc.add("5, -1, -7, 1")).toThrow(
         "negative numbers not allowed: -1, -7"
       );
+    });
+  });
+  describe("handles greater than 1000 number", () => {
+    test("ignore number greater than 1000", () => {
+      expect(sCalc.add("1004, 1, 9, 50")).toBe(60);
     });
   });
 });
