@@ -29,18 +29,24 @@ class StringCalculator {
         delimiter = new RegExp(delimiterDefinition);
       }
     }
-
-    const numArr = numString
-      .split(delimiter)
-      .map((s) => s.trim())
-      .filter((s) => s !== "")
-      .map(Number)
-      .filter((n) => n <= 1000);
-
-    const negatives = numArr.filter((n) => n < 0);
+    let sum = 0;
+    const negatives = [];
+    // const numArr = numString
+    //   .split(delimiter)
+    //   .map((s) => s.trim())
+    //   .filter((s) => s !== "")
+    //   .map(Number)
+    //   .filter((n) => n <= 1000);
+    for (const token of numString.split(delimiter)) {
+      const n = Number(token.trim());
+      if (!Number.isNaN(n) && n <= 1000) {
+        if (n < 0) negatives.push(n);
+        sum += n;
+      }
+    }
     if (negatives.length > 0)
       throw new Error(`negative numbers not allowed: ${negatives.join(", ")}`);
-    return numArr.reduce((acc, n) => acc + n, 0);
+    return sum;
   }
   getCallCount() {
     return this.callCount;

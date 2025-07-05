@@ -70,8 +70,8 @@ describe("String Calculator", () => {
       const result = sCalc.add(nums);
       const endTime = performance.now();
       const endMem = process.memoryUsage().heapUsed;
-      console.log(`Time taken : ${endTime - startTime}.toFixed(2) ms`);
-      console.log(`Memory used : ${endMem - startMem}.toFixed(2) KB`);
+      console.log(`Time taken : ${endTime - startTime.toFixed(2)} ms`);
+      console.log(`Memory used : ${(endMem - startMem.toFixed(2)) / 1024} KB`);
       expect(result).toBe((n * (n + 1)) / 2);
     });
   });
