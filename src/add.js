@@ -42,7 +42,6 @@ class StringCalculator {
       throw new Error(`negative numbers not allowed: ${negatives.join(", ")}`);
     return numArr.reduce((acc, n) => acc + n, 0);
   }
-
   getCallCount() {
     return this.callCount;
   }

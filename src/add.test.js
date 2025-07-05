@@ -1,4 +1,5 @@
 const { StringCalculator } = require("./add");
+const { performance } = require("perf_hooks");
 const sCalc = new StringCalculator();
 describe("String Calculator", () => {
   describe("Count number of times add method called", () => {
@@ -55,6 +56,23 @@ describe("String Calculator", () => {
   describe("handles greater than 1000 number", () => {
     test("ignore number greater than 1000", () => {
       expect(sCalc.add("1004, 1, 9, 50")).toBe(60);
+    });
+  });
+  describe("performance test", () => {
+    test("adds 1000 numbers", () => {
+      let nums = "";
+      const n = 1000;
+      for (let i = 1; i <= n; i++) {
+        nums += `${i}, `;
+      }
+      const startMem = process.memoryUsage().heapUsed;
+      const startTime = performance.now();
+      const result = sCalc.add(nums);
+      const endTime = performance.now();
+      const endMem = process.memoryUsage().heapUsed;
+      console.log(`Time taken : ${endTime - startTime}.toFixed(2) ms`);
+      console.log(`Memory used : ${endMem - startMem}.toFixed(2) KB`);
+      expect(result).toBe((n * (n + 1)) / 2);
     });
   });
 });
